@@ -1,11 +1,9 @@
 import pygame, sys, random
 
-
 # General Setup 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
 clock = pygame.time.Clock() # Makes sure game runs at a constant speed
-
 
 # Setting up the main window 
 screen_width = 640
@@ -13,11 +11,9 @@ screen_height = 480
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Pong')
 
-
 # Defining colors 
 bg_color = pygame.Color('grey12')
 light_grey = (200,200,200)
-
 
 # Game Rectangles 
 ball = pygame.Rect(screen_width/2 - 15, screen_height/2 - 15, 16, 16)
@@ -26,22 +22,18 @@ player = pygame.Rect(screen_width - 20, screen_height/2 - 70, 10, 100)
 # Left side of screen
 opponent = pygame.Rect(10, screen_height/2 - 70, 10, 100)
 
-
-# Game Variables - Defining ball, player, and opponent speed 
+# Variables 
 ball_speed_x = 7 * random.choice((1, -1))
 ball_speed_y = 7 * random.choice((1, -1))
 player_speed = 0
 opponent_speed = 7
 
-# Text Variables 
 player_score = 0
 opponent_score = 0
 score_font = pygame.font.Font('freesansbold.ttf', 24)
 
-# Score Timer Variables 
 score_time = True
 
-# Sound Variables 
 pong_sound = pygame.mixer.Sound('Hit_3.wav')
 score_sound = pygame.mixer.Sound('score.wav')
 
@@ -61,13 +53,13 @@ def ball_animation():
         pygame.mixer.Sound.play(score_sound)
         player_score += 1
         score_time = pygame.time.get_ticks()
-#   (Opponent Score)
+    # Opponent Score
     if ball.right >= screen_width:
         pygame.mixer.Sound.play(score_sound)
         opponent_score += 1
         score_time = pygame.time.get_ticks()
     
-    # Collisions (colliding with player and opponent)
+    # Collisions 
     if ball.colliderect(player) and ball_speed_x > 0:
         pygame.mixer.Sound.play(pong_sound)
         if abs(ball.right - player.left) < 10:
@@ -172,7 +164,6 @@ while True:
 
     if score_time: 
         ball_restart()
-
 
 # Text Visuals (text surface)
     player_text = score_font.render(f'{player_score}',False, light_grey) 
