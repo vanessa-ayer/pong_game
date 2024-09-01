@@ -128,9 +128,8 @@ def ball_restart():
     ball_speed_x *= random.choice((1, -1))
 
 
-# In-game while loop
+# Game Loop
 while True:
-    # Handling input
      
     # Exit Game
     for event in pygame.event.get():
@@ -150,12 +149,12 @@ while True:
             if event.key == pygame.K_UP:
                 player_speed += 7
 
-    # Game Logic - Functions 
+    # Game Logic 
     ball_animation()
     player_animation()
     opponent_ai()
   
-# Visuals - in order (surface)
+# Visuals 
     screen.fill(bg_color)
     pygame.draw.rect(screen, light_grey, player)
     pygame.draw.rect(screen, light_grey, opponent)
@@ -171,7 +170,7 @@ while True:
 
     opponent_text = score_font.render(f'{opponent_score}', False, light_grey)
     screen.blit(opponent_text, (297, 227))
-    # second argument is if the text is anti aliased or not 
+    
 
 # Updating the window 
     pygame.display.flip() # Draws everything that came before it 
